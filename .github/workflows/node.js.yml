@@ -20,20 +20,20 @@ jobs:
             set -e
             cd /home/${{ secrets.SSH_USERNAME }}/apps/back/marabucoo-back
 
-            echo "→ Pull du code"
+            echo "→ → Pull du code"
             git pull origin main
 
-            echo "→ Installation des dépendances"
+            echo "→ → Installation des dépendances"
             npm install --production=false
 
-            echo "→ Build TypeScript"
+            echo "→ → Build TypeScript"
             npx tsc
 
-            echo "→ Prisma"
+            echo "→ → Prisma"
             npx prisma generate
             npx prisma migrate deploy
 
-            echo "→ Redémarrage PM2"
+            echo "→ → Redémarrage PM2"
             pm2 restart marabucoo-back
 
-            echo "✅ Déploiement terminé"
+            echo "✅ ✅Déploiement terminé"
