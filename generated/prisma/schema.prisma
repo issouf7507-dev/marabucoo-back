@@ -1,0 +1,301 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ─────────────────────────────────────────
+//  CLIENTS
+// ─────────────────────────────────────────
+
+model Client {
+  id        Int      @id @default(autoincrement())
+  nom       String
+  secteur   String?
+  tel       String?
+  email     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("clients")
+}
+
+// ─────────────────────────────────────────
+//  AUTH
+// ─────────────────────────────────────────
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String
+  role      Role     @default(VIEWER)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
+}
+
+enum Role {
+  ADMIN
+  COO
+  VIEWER
+}
+
+// ─────────────────────────────────────────
+//  MISSIONS
+// ─────────────────────────────────────────
+
+model Mission {
+  id        Int           @id @default(autoincrement())
+  nom       String
+  client    String
+  apporteur String?
+  statut    MissionStatut @default(PROSPECT)
+  montant   Float         @default(0)
+  avance    Float         @default(0)
+  debut     DateTime?
+  fin       DateTime?
+  tva       String        @default("exo")
+  nature    String        @default("prevu")
+  desc      String?
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+
+  encaissements MissionEnc[]
+  factures      Facture[]
+
+  @@map("missions")
+}
+
+enum MissionStatut {
+  PROSPECT
+  TDR
+  PROPALE
+  CONTRAT
+  EN_COURS
+  TERMINE
+  PERDU
+}
+
+model MissionEnc {
+  id        Int    @id @default(autoincrement())
+  missionId Int
+  mois      String // "jan", "fev", etc.
+  montant   Float  @default(0)
+
+  mission Mission @relation(fields: [missionId], references: [id], onDelete: Cascade)
+
+  @@unique([missionId, mois])
+  @@map("mission_enc")
+}
+
+// ─────────────────────────────────────────
+//  FACTURATION
+// ─────────────────────────────────────────
+
+model Facture {
+  id         Int      @id @default(autoincrement())
+  missionId  Int
+  num        String   @unique
+  date       DateTime
+  ht         Float
+  tvaType    String   @default("exo")
+  tvaMontant Float    @default(0)
+  ttc        Float
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  mission  Mission   @relation(fields: [missionId], references: [id], onDelete: Cascade)
+  tranches Tranche[]
+
+  @@map("factures")
+}
+
+model Tranche {
+  id        Int       @id @default(autoincrement())
+  factureId Int
+  num       Int
+  montant   Float
+  echeance  DateTime
+  encaisse  Float     @default(0)
+  dateEnc   DateTime?
+  ref       String?
+  statut    String    @default("En attente")
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  facture Facture @relation(fields: [factureId], references: [id], onDelete: Cascade)
+
+  @@map("tranches")
+}
+
+// ─────────────────────────────────────────
+//  RESSOURCES HUMAINES
+// ─────────────────────────────────────────
+
+model Staff {
+  id        Int       @id @default(autoincrement())
+  nom       String
+  poste     String?
+  salaire   Float     @default(0)
+  nature    String    @default("Consultant")
+  debut     DateTime?
+  fin       String?
+  marabu    Boolean   @default(true)
+  actif     Boolean   @default(true)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  paies StaffPaie[]
+
+  @@map("staff")
+}
+
+model StaffPaie {
+  id      Int     @id @default(autoincrement())
+  staffId Int
+  mois    String // "jan", "fev", etc.
+  annee   Int     @default(2026)
+  montant Float?
+  statut  String?
+
+  staff Staff @relation(fields: [staffId], references: [id], onDelete: Cascade)
+
+  @@unique([staffId, mois, annee])
+  @@map("staff_paies")
+}
+
+// ─────────────────────────────────────────
+//  CHARGES
+// ─────────────────────────────────────────
+
+model Charge {
+  id          Int      @id @default(autoincrement())
+  libelle     String
+  categorie   String // RH, EXPLOIT, UTIL, VAR
+  nature      String   @default("fixe")
+  type        String   @default("prevu")
+  periodicite String   @default("Mensuelle")
+  budget      Float    @default(0)
+  obs         String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  realisations ChargeReel[]
+
+  @@map("charges")
+}
+
+model ChargeReel {
+  id       Int       @id @default(autoincrement())
+  chargeId Int
+  mois     String // "jan", "fev", etc.
+  annee    Int       @default(2026)
+  montant  Float     @default(0)
+  statut   String?
+  datePmt  DateTime?
+
+  charge Charge @relation(fields: [chargeId], references: [id], onDelete: Cascade)
+
+  @@unique([chargeId, mois, annee])
+  @@map("charge_reels")
+}
+
+// ─────────────────────────────────────────
+//  DÉPENSES BANQUE
+// ─────────────────────────────────────────
+
+model Depense {
+  id          Int      @id @default(autoincrement())
+  type        String // ENTREE BANQUE, SORTIE BANQUE
+  categorie   String?
+  periode     String?
+  intitule    String?
+  date        DateTime
+  designation String
+  prestataire String?
+  montant     Float    @default(0)
+  credit      Float    @default(0)
+  debit       Float    @default(0)
+  fraisTransf Float    @default(0)
+  penalite    Float    @default(0)
+  reference   String?
+  nature      String   @default("prevu")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("depenses")
+}
+
+// ─────────────────────────────────────────
+//  PETITE CAISSE
+// ─────────────────────────────────────────
+
+model PetiteCaisse {
+  id          Int      @id @default(autoincrement())
+  num         String   @unique
+  caisse      String // PRINCIPALE, BEN SOUDA
+  type        String // entree, sortie
+  categorie   String?
+  nature      String   @default("prevu")
+  periode     String?
+  date        DateTime
+  designation String
+  prestataire String?
+  entree      Float    @default(0)
+  sortie      Float    @default(0)
+  penalite    Float    @default(0)
+  solde       Float    @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("petite_caisse")
+}
+
+// ─────────────────────────────────────────
+//  TRÉSORERIE
+// ─────────────────────────────────────────
+
+model Tresorerie {
+  id        Int      @id @default(autoincrement())
+  mois      String
+  annee     Int      @default(2026)
+  type      String   @default("prevision") // reel, prevision
+  banque    Float    @default(0)
+  coffre    Float    @default(0)
+  entrees   Float    @default(0)
+  chgPrev   Float    @default(0)
+  chgPay    Float    @default(0)
+  reste     Float    @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([mois, annee])
+  @@map("tresorerie")
+}
+
+// ─────────────────────────────────────────
+//  PARAMÈTRES
+// ─────────────────────────────────────────
+
+model Params {
+  id         Int      @id @default(1)
+  banque     Float    @default(0)
+  coffre     Float    @default(0)
+  masseSal   Float    @default(0)
+  chargesPat Float    @default(0)
+  primesMens Float    @default(0)
+  arrSal     Float    @default(0)
+  arrSalR    Float    @default(0)
+  arrSalM    Float    @default(0)
+  arrPrim    Float    @default(0)
+  arrPrimM   Float    @default(0)
+  updatedAt  DateTime @updatedAt
+
+  @@map("params")
+}
