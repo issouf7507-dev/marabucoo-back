@@ -9,6 +9,7 @@ const chargeSchema = z.object({
   type: z.string().optional(),
   periodicite: z.string().optional(),
   budget: z.number().min(0).optional(),
+  moisApplicables: z.string().optional(),
   obs: z.string().optional(),
 });
 

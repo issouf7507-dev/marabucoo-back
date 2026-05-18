@@ -11411,6 +11411,7 @@ export namespace Prisma {
     type: string | null
     periodicite: string | null
     budget: number | null
+    moisApplicables: string | null
     obs: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -11424,6 +11425,7 @@ export namespace Prisma {
     type: string | null
     periodicite: string | null
     budget: number | null
+    moisApplicables: string | null
     obs: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -11437,6 +11439,7 @@ export namespace Prisma {
     type: number
     periodicite: number
     budget: number
+    moisApplicables: number
     obs: number
     createdAt: number
     updatedAt: number
@@ -11462,6 +11465,7 @@ export namespace Prisma {
     type?: true
     periodicite?: true
     budget?: true
+    moisApplicables?: true
     obs?: true
     createdAt?: true
     updatedAt?: true
@@ -11475,6 +11479,7 @@ export namespace Prisma {
     type?: true
     periodicite?: true
     budget?: true
+    moisApplicables?: true
     obs?: true
     createdAt?: true
     updatedAt?: true
@@ -11488,6 +11493,7 @@ export namespace Prisma {
     type?: true
     periodicite?: true
     budget?: true
+    moisApplicables?: true
     obs?: true
     createdAt?: true
     updatedAt?: true
@@ -11588,6 +11594,7 @@ export namespace Prisma {
     type: string
     periodicite: string
     budget: number
+    moisApplicables: string
     obs: string | null
     createdAt: Date
     updatedAt: Date
@@ -11620,6 +11627,7 @@ export namespace Prisma {
     type?: boolean
     periodicite?: boolean
     budget?: boolean
+    moisApplicables?: boolean
     obs?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -11635,6 +11643,7 @@ export namespace Prisma {
     type?: boolean
     periodicite?: boolean
     budget?: boolean
+    moisApplicables?: boolean
     obs?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -11648,6 +11657,7 @@ export namespace Prisma {
     type?: boolean
     periodicite?: boolean
     budget?: boolean
+    moisApplicables?: boolean
     obs?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -11661,12 +11671,13 @@ export namespace Prisma {
     type?: boolean
     periodicite?: boolean
     budget?: boolean
+    moisApplicables?: boolean
     obs?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type ChargeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "libelle" | "categorie" | "nature" | "type" | "periodicite" | "budget" | "obs" | "createdAt" | "updatedAt", ExtArgs["result"]["charge"]>
+  export type ChargeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "libelle" | "categorie" | "nature" | "type" | "periodicite" | "budget" | "moisApplicables" | "obs" | "createdAt" | "updatedAt", ExtArgs["result"]["charge"]>
   export type ChargeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     realisations?: boolean | Charge$realisationsArgs<ExtArgs>
     _count?: boolean | ChargeCountOutputTypeDefaultArgs<ExtArgs>
@@ -11687,6 +11698,7 @@ export namespace Prisma {
       type: string
       periodicite: string
       budget: number
+      moisApplicables: string
       obs: string | null
       createdAt: Date
       updatedAt: Date
@@ -12121,6 +12133,7 @@ export namespace Prisma {
     readonly type: FieldRef<"Charge", 'String'>
     readonly periodicite: FieldRef<"Charge", 'String'>
     readonly budget: FieldRef<"Charge", 'Float'>
+    readonly moisApplicables: FieldRef<"Charge", 'String'>
     readonly obs: FieldRef<"Charge", 'String'>
     readonly createdAt: FieldRef<"Charge", 'DateTime'>
     readonly updatedAt: FieldRef<"Charge", 'DateTime'>
@@ -14947,6 +14960,7 @@ export namespace Prisma {
     sortie: number | null
     penalite: number | null
     solde: number | null
+    refFacture: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -14966,6 +14980,7 @@ export namespace Prisma {
     sortie: number | null
     penalite: number | null
     solde: number | null
+    refFacture: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -14985,6 +15000,7 @@ export namespace Prisma {
     sortie: number
     penalite: number
     solde: number
+    refFacture: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -15022,6 +15038,7 @@ export namespace Prisma {
     sortie?: true
     penalite?: true
     solde?: true
+    refFacture?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -15041,6 +15058,7 @@ export namespace Prisma {
     sortie?: true
     penalite?: true
     solde?: true
+    refFacture?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -15060,6 +15078,7 @@ export namespace Prisma {
     sortie?: true
     penalite?: true
     solde?: true
+    refFacture?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -15166,6 +15185,7 @@ export namespace Prisma {
     sortie: number
     penalite: number
     solde: number
+    refFacture: string | null
     createdAt: Date
     updatedAt: Date
     _count: PetiteCaisseCountAggregateOutputType | null
@@ -15204,6 +15224,7 @@ export namespace Prisma {
     sortie?: boolean
     penalite?: boolean
     solde?: boolean
+    refFacture?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["petiteCaisse"]>
@@ -15223,6 +15244,7 @@ export namespace Prisma {
     sortie?: boolean
     penalite?: boolean
     solde?: boolean
+    refFacture?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["petiteCaisse"]>
@@ -15242,6 +15264,7 @@ export namespace Prisma {
     sortie?: boolean
     penalite?: boolean
     solde?: boolean
+    refFacture?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["petiteCaisse"]>
@@ -15261,11 +15284,12 @@ export namespace Prisma {
     sortie?: boolean
     penalite?: boolean
     solde?: boolean
+    refFacture?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type PetiteCaisseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "num" | "caisse" | "type" | "categorie" | "nature" | "periode" | "date" | "designation" | "prestataire" | "entree" | "sortie" | "penalite" | "solde" | "createdAt" | "updatedAt", ExtArgs["result"]["petiteCaisse"]>
+  export type PetiteCaisseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "num" | "caisse" | "type" | "categorie" | "nature" | "periode" | "date" | "designation" | "prestataire" | "entree" | "sortie" | "penalite" | "solde" | "refFacture" | "createdAt" | "updatedAt", ExtArgs["result"]["petiteCaisse"]>
 
   export type $PetiteCaissePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "PetiteCaisse"
@@ -15285,6 +15309,7 @@ export namespace Prisma {
       sortie: number
       penalite: number
       solde: number
+      refFacture: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["petiteCaisse"]>
@@ -15724,6 +15749,7 @@ export namespace Prisma {
     readonly sortie: FieldRef<"PetiteCaisse", 'Float'>
     readonly penalite: FieldRef<"PetiteCaisse", 'Float'>
     readonly solde: FieldRef<"PetiteCaisse", 'Float'>
+    readonly refFacture: FieldRef<"PetiteCaisse", 'String'>
     readonly createdAt: FieldRef<"PetiteCaisse", 'DateTime'>
     readonly updatedAt: FieldRef<"PetiteCaisse", 'DateTime'>
   }
@@ -18556,6 +18582,7 @@ export namespace Prisma {
     type: 'type',
     periodicite: 'periodicite',
     budget: 'budget',
+    moisApplicables: 'moisApplicables',
     obs: 'obs',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -18615,6 +18642,7 @@ export namespace Prisma {
     sortie: 'sortie',
     penalite: 'penalite',
     solde: 'solde',
+    refFacture: 'refFacture',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -19403,6 +19431,7 @@ export namespace Prisma {
     type?: StringFilter<"Charge"> | string
     periodicite?: StringFilter<"Charge"> | string
     budget?: FloatFilter<"Charge"> | number
+    moisApplicables?: StringFilter<"Charge"> | string
     obs?: StringNullableFilter<"Charge"> | string | null
     createdAt?: DateTimeFilter<"Charge"> | Date | string
     updatedAt?: DateTimeFilter<"Charge"> | Date | string
@@ -19417,6 +19446,7 @@ export namespace Prisma {
     type?: SortOrder
     periodicite?: SortOrder
     budget?: SortOrder
+    moisApplicables?: SortOrder
     obs?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -19434,6 +19464,7 @@ export namespace Prisma {
     type?: StringFilter<"Charge"> | string
     periodicite?: StringFilter<"Charge"> | string
     budget?: FloatFilter<"Charge"> | number
+    moisApplicables?: StringFilter<"Charge"> | string
     obs?: StringNullableFilter<"Charge"> | string | null
     createdAt?: DateTimeFilter<"Charge"> | Date | string
     updatedAt?: DateTimeFilter<"Charge"> | Date | string
@@ -19448,6 +19479,7 @@ export namespace Prisma {
     type?: SortOrder
     periodicite?: SortOrder
     budget?: SortOrder
+    moisApplicables?: SortOrder
     obs?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -19469,6 +19501,7 @@ export namespace Prisma {
     type?: StringWithAggregatesFilter<"Charge"> | string
     periodicite?: StringWithAggregatesFilter<"Charge"> | string
     budget?: FloatWithAggregatesFilter<"Charge"> | number
+    moisApplicables?: StringWithAggregatesFilter<"Charge"> | string
     obs?: StringNullableWithAggregatesFilter<"Charge"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Charge"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Charge"> | Date | string
@@ -19674,6 +19707,7 @@ export namespace Prisma {
     sortie?: FloatFilter<"PetiteCaisse"> | number
     penalite?: FloatFilter<"PetiteCaisse"> | number
     solde?: FloatFilter<"PetiteCaisse"> | number
+    refFacture?: StringNullableFilter<"PetiteCaisse"> | string | null
     createdAt?: DateTimeFilter<"PetiteCaisse"> | Date | string
     updatedAt?: DateTimeFilter<"PetiteCaisse"> | Date | string
   }
@@ -19693,6 +19727,7 @@ export namespace Prisma {
     sortie?: SortOrder
     penalite?: SortOrder
     solde?: SortOrder
+    refFacture?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -19715,6 +19750,7 @@ export namespace Prisma {
     sortie?: FloatFilter<"PetiteCaisse"> | number
     penalite?: FloatFilter<"PetiteCaisse"> | number
     solde?: FloatFilter<"PetiteCaisse"> | number
+    refFacture?: StringNullableFilter<"PetiteCaisse"> | string | null
     createdAt?: DateTimeFilter<"PetiteCaisse"> | Date | string
     updatedAt?: DateTimeFilter<"PetiteCaisse"> | Date | string
   }, "id" | "num">
@@ -19734,6 +19770,7 @@ export namespace Prisma {
     sortie?: SortOrder
     penalite?: SortOrder
     solde?: SortOrder
+    refFacture?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: PetiteCaisseCountOrderByAggregateInput
@@ -19761,6 +19798,7 @@ export namespace Prisma {
     sortie?: FloatWithAggregatesFilter<"PetiteCaisse"> | number
     penalite?: FloatWithAggregatesFilter<"PetiteCaisse"> | number
     solde?: FloatWithAggregatesFilter<"PetiteCaisse"> | number
+    refFacture?: StringNullableWithAggregatesFilter<"PetiteCaisse"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"PetiteCaisse"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"PetiteCaisse"> | Date | string
   }
@@ -20607,6 +20645,7 @@ export namespace Prisma {
     type?: string
     periodicite?: string
     budget?: number
+    moisApplicables?: string
     obs?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -20621,6 +20660,7 @@ export namespace Prisma {
     type?: string
     periodicite?: string
     budget?: number
+    moisApplicables?: string
     obs?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -20634,6 +20674,7 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     periodicite?: StringFieldUpdateOperationsInput | string
     budget?: FloatFieldUpdateOperationsInput | number
+    moisApplicables?: StringFieldUpdateOperationsInput | string
     obs?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -20648,6 +20689,7 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     periodicite?: StringFieldUpdateOperationsInput | string
     budget?: FloatFieldUpdateOperationsInput | number
+    moisApplicables?: StringFieldUpdateOperationsInput | string
     obs?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -20662,6 +20704,7 @@ export namespace Prisma {
     type?: string
     periodicite?: string
     budget?: number
+    moisApplicables?: string
     obs?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -20674,6 +20717,7 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     periodicite?: StringFieldUpdateOperationsInput | string
     budget?: FloatFieldUpdateOperationsInput | number
+    moisApplicables?: StringFieldUpdateOperationsInput | string
     obs?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -20687,6 +20731,7 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     periodicite?: StringFieldUpdateOperationsInput | string
     budget?: FloatFieldUpdateOperationsInput | number
+    moisApplicables?: StringFieldUpdateOperationsInput | string
     obs?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -20909,6 +20954,7 @@ export namespace Prisma {
     sortie?: number
     penalite?: number
     solde?: number
+    refFacture?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -20928,6 +20974,7 @@ export namespace Prisma {
     sortie?: number
     penalite?: number
     solde?: number
+    refFacture?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -20946,6 +20993,7 @@ export namespace Prisma {
     sortie?: FloatFieldUpdateOperationsInput | number
     penalite?: FloatFieldUpdateOperationsInput | number
     solde?: FloatFieldUpdateOperationsInput | number
+    refFacture?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -20965,6 +21013,7 @@ export namespace Prisma {
     sortie?: FloatFieldUpdateOperationsInput | number
     penalite?: FloatFieldUpdateOperationsInput | number
     solde?: FloatFieldUpdateOperationsInput | number
+    refFacture?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -20984,6 +21033,7 @@ export namespace Prisma {
     sortie?: number
     penalite?: number
     solde?: number
+    refFacture?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -21002,6 +21052,7 @@ export namespace Prisma {
     sortie?: FloatFieldUpdateOperationsInput | number
     penalite?: FloatFieldUpdateOperationsInput | number
     solde?: FloatFieldUpdateOperationsInput | number
+    refFacture?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -21021,6 +21072,7 @@ export namespace Prisma {
     sortie?: FloatFieldUpdateOperationsInput | number
     penalite?: FloatFieldUpdateOperationsInput | number
     solde?: FloatFieldUpdateOperationsInput | number
+    refFacture?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -21938,6 +21990,7 @@ export namespace Prisma {
     type?: SortOrder
     periodicite?: SortOrder
     budget?: SortOrder
+    moisApplicables?: SortOrder
     obs?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -21956,6 +22009,7 @@ export namespace Prisma {
     type?: SortOrder
     periodicite?: SortOrder
     budget?: SortOrder
+    moisApplicables?: SortOrder
     obs?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -21969,6 +22023,7 @@ export namespace Prisma {
     type?: SortOrder
     periodicite?: SortOrder
     budget?: SortOrder
+    moisApplicables?: SortOrder
     obs?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -22127,6 +22182,7 @@ export namespace Prisma {
     sortie?: SortOrder
     penalite?: SortOrder
     solde?: SortOrder
+    refFacture?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -22154,6 +22210,7 @@ export namespace Prisma {
     sortie?: SortOrder
     penalite?: SortOrder
     solde?: SortOrder
+    refFacture?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -22173,6 +22230,7 @@ export namespace Prisma {
     sortie?: SortOrder
     penalite?: SortOrder
     solde?: SortOrder
+    refFacture?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -23519,6 +23577,7 @@ export namespace Prisma {
     type?: string
     periodicite?: string
     budget?: number
+    moisApplicables?: string
     obs?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -23532,6 +23591,7 @@ export namespace Prisma {
     type?: string
     periodicite?: string
     budget?: number
+    moisApplicables?: string
     obs?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -23560,6 +23620,7 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     periodicite?: StringFieldUpdateOperationsInput | string
     budget?: FloatFieldUpdateOperationsInput | number
+    moisApplicables?: StringFieldUpdateOperationsInput | string
     obs?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -23573,6 +23634,7 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     periodicite?: StringFieldUpdateOperationsInput | string
     budget?: FloatFieldUpdateOperationsInput | number
+    moisApplicables?: StringFieldUpdateOperationsInput | string
     obs?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
