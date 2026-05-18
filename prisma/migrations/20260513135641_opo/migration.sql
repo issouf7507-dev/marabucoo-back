@@ -5,6 +5,19 @@ CREATE TYPE "Role" AS ENUM ('ADMIN', 'COO', 'VIEWER');
 CREATE TYPE "MissionStatut" AS ENUM ('PROSPECT', 'TDR', 'PROPALE', 'CONTRAT', 'EN_COURS', 'TERMINE', 'PERDU');
 
 -- CreateTable
+CREATE TABLE "clients" (
+    "id" SERIAL NOT NULL,
+    "nom" TEXT NOT NULL,
+    "secteur" TEXT,
+    "tel" TEXT,
+    "email" TEXT,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "clients_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "users" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
@@ -119,6 +132,7 @@ CREATE TABLE "charges" (
     "type" TEXT NOT NULL DEFAULT 'prevu',
     "periodicite" TEXT NOT NULL DEFAULT 'Mensuelle',
     "budget" DOUBLE PRECISION NOT NULL DEFAULT 0,
+    "moisApplicables" TEXT NOT NULL DEFAULT '',
     "obs" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -178,6 +192,7 @@ CREATE TABLE "petite_caisse" (
     "sortie" DOUBLE PRECISION NOT NULL DEFAULT 0,
     "penalite" DOUBLE PRECISION NOT NULL DEFAULT 0,
     "solde" DOUBLE PRECISION NOT NULL DEFAULT 0,
+    "refFacture" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 

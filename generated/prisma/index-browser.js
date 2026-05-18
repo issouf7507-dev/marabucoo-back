@@ -223,6 +223,7 @@ exports.Prisma.ChargeScalarFieldEnum = {
   type: 'type',
   periodicite: 'periodicite',
   budget: 'budget',
+  moisApplicables: 'moisApplicables',
   obs: 'obs',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -273,6 +274,7 @@ exports.Prisma.PetiteCaisseScalarFieldEnum = {
   sortie: 'sortie',
   penalite: 'penalite',
   solde: 'solde',
+  refFacture: 'refFacture',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };

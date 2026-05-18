@@ -24,6 +24,8 @@ model Client {
   @@map("clients")
 }
 
+
+
 // ─────────────────────────────────────────
 //  AUTH
 // ─────────────────────────────────────────
@@ -176,16 +178,17 @@ model StaffPaie {
 // ─────────────────────────────────────────
 
 model Charge {
-  id          Int      @id @default(autoincrement())
-  libelle     String
-  categorie   String   // RH, EXPLOIT, UTIL, VAR
-  nature      String   @default("fixe")
-  type        String   @default("prevu")
-  periodicite String   @default("Mensuelle")
-  budget      Float    @default(0)
-  obs         String?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id               Int      @id @default(autoincrement())
+  libelle          String
+  categorie        String   // RH, EXPLOIT, UTIL, VAR
+  nature           String   @default("fixe")
+  type             String   @default("prevu")
+  periodicite      String   @default("Mensuelle")
+  budget           Float    @default(0)
+  moisApplicables  String   @default("") // comma-separated mois keys, empty = all months
+  obs              String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
 
   realisations ChargeReel[]
 
@@ -252,6 +255,7 @@ model PetiteCaisse {
   sortie      Float    @default(0)
   penalite    Float    @default(0)
   solde       Float    @default(0)
+  refFacture  String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
