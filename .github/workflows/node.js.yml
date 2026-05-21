@@ -34,6 +34,8 @@ jobs:
             npx prisma generate
 
             echo "→ → Redémarrage PM2"
-            pm2 restart marabucoo-back
+            pm2 describe marabucoo-back > /dev/null 2>&1 \
+            && pm2 restart marabucoo-back \
+            || pm2 start dist/index.js --name marabucoo-back
 
             echo "✅ ✅Déploiement terminé"
