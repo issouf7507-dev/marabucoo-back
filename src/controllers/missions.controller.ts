@@ -76,6 +76,77 @@ export async function remove(req: Request, res: Response): Promise<void> {
   res.status(204).send();
 }
 
+type ExtMission = {
+  id: number;
+  code: string;
+  nom: string;
+  client_nom: string;
+  apporteur_affaires: string;
+  progression_pct: number;
+  budget_estime: number | null;
+  budget: number | null;
+  budget_reel: number | null;
+  date_debut: string | null;
+};
+
+const EXTERNAL_URL   = 'https://adminer-test.marabu.services/api/missions/actives';
+const EXTERNAL_TOKEN = '1bbf6dc2cb06799385897bc8ae891d23da952007bc7926e4e737fd2118803252';
+
+export async function syncExternal(_req: Request, res: Response): Promise<void> {
+  const resp = await fetch(EXTERNAL_URL, {
+    headers: { Authorization: `Bearer ${EXTERNAL_TOKEN}` },
+  });
+  if (!resp.ok) {
+    res.status(502).json({ message: `Erreur API externe : ${resp.status}` });
+    return;
+  }
+
+  const { data } = (await resp.json()) as { data: ExtMission[] };
+  let synced = 0;
+
+  for (const m of data) {
+    if (!m.code) continue;
+
+    const clientNom = m.client_nom ?? 'Inconnu';
+
+    // Créer le client s'il n'existe pas encore
+    const existing = await prisma.client.findFirst({ where: { nom: clientNom } });
+    if (!existing) {
+      await prisma.client.create({ data: { nom: clientNom } });
+    }
+
+    // Ne pas écraser une mission déjà enregistrée localement
+    const alreadyExists = await prisma.mission.findUnique({ where: { externalCode: m.code } });
+    if (alreadyExists) continue;
+
+    const montant   = m.budget ?? m.budget_estime ?? 0;
+    const avance    = m.budget_reel ?? 0;
+    const apporteur = m.apporteur_affaires && m.apporteur_affaires !== '—'
+      ? m.apporteur_affaires.trim()
+      : null;
+    const statut = m.progression_pct >= 100 ? 'TERMINE' : 'EN_COURS';
+    const debut  = m.date_debut ? new Date(m.date_debut) : null;
+
+    await prisma.mission.create({
+      data: {
+        externalCode: m.code,
+        nom:     m.nom,
+        client:  clientNom,
+        apporteur,
+        montant,
+        avance,
+        statut,
+        debut,
+        tva:    'exo',
+        nature: 'prevu',
+      },
+    });
+    synced++;
+  }
+
+  res.json({ synced, total: data.length });
+}
+
 export async function updateEnc(req: Request, res: Response): Promise<void> {
   const missionId = Number(req.params.id);
   const enc: Record<string, number> = req.body;

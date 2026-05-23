@@ -2242,6 +2242,10 @@ export namespace Prisma {
     secteur: string | null
     tel: string | null
     email: string | null
+    ncc: string | null
+    fneTemplate: string | null
+    fnePointOfSale: string | null
+    fneEstablishment: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -2252,6 +2256,10 @@ export namespace Prisma {
     secteur: string | null
     tel: string | null
     email: string | null
+    ncc: string | null
+    fneTemplate: string | null
+    fnePointOfSale: string | null
+    fneEstablishment: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -2262,6 +2270,10 @@ export namespace Prisma {
     secteur: number
     tel: number
     email: number
+    ncc: number
+    fneTemplate: number
+    fnePointOfSale: number
+    fneEstablishment: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -2282,6 +2294,10 @@ export namespace Prisma {
     secteur?: true
     tel?: true
     email?: true
+    ncc?: true
+    fneTemplate?: true
+    fnePointOfSale?: true
+    fneEstablishment?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -2292,6 +2308,10 @@ export namespace Prisma {
     secteur?: true
     tel?: true
     email?: true
+    ncc?: true
+    fneTemplate?: true
+    fnePointOfSale?: true
+    fneEstablishment?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -2302,6 +2322,10 @@ export namespace Prisma {
     secteur?: true
     tel?: true
     email?: true
+    ncc?: true
+    fneTemplate?: true
+    fnePointOfSale?: true
+    fneEstablishment?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -2399,6 +2423,10 @@ export namespace Prisma {
     secteur: string | null
     tel: string | null
     email: string | null
+    ncc: string | null
+    fneTemplate: string | null
+    fnePointOfSale: string | null
+    fneEstablishment: string | null
     createdAt: Date
     updatedAt: Date
     _count: ClientCountAggregateOutputType | null
@@ -2428,6 +2456,10 @@ export namespace Prisma {
     secteur?: boolean
     tel?: boolean
     email?: boolean
+    ncc?: boolean
+    fneTemplate?: boolean
+    fnePointOfSale?: boolean
+    fneEstablishment?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["client"]>
@@ -2438,6 +2470,10 @@ export namespace Prisma {
     secteur?: boolean
     tel?: boolean
     email?: boolean
+    ncc?: boolean
+    fneTemplate?: boolean
+    fnePointOfSale?: boolean
+    fneEstablishment?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["client"]>
@@ -2448,6 +2484,10 @@ export namespace Prisma {
     secteur?: boolean
     tel?: boolean
     email?: boolean
+    ncc?: boolean
+    fneTemplate?: boolean
+    fnePointOfSale?: boolean
+    fneEstablishment?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["client"]>
@@ -2458,11 +2498,15 @@ export namespace Prisma {
     secteur?: boolean
     tel?: boolean
     email?: boolean
+    ncc?: boolean
+    fneTemplate?: boolean
+    fnePointOfSale?: boolean
+    fneEstablishment?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type ClientOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nom" | "secteur" | "tel" | "email" | "createdAt" | "updatedAt", ExtArgs["result"]["client"]>
+  export type ClientOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nom" | "secteur" | "tel" | "email" | "ncc" | "fneTemplate" | "fnePointOfSale" | "fneEstablishment" | "createdAt" | "updatedAt", ExtArgs["result"]["client"]>
 
   export type $ClientPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Client"
@@ -2473,6 +2517,10 @@ export namespace Prisma {
       secteur: string | null
       tel: string | null
       email: string | null
+      ncc: string | null
+      fneTemplate: string | null
+      fnePointOfSale: string | null
+      fneEstablishment: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["client"]>
@@ -2903,6 +2951,10 @@ export namespace Prisma {
     readonly secteur: FieldRef<"Client", 'String'>
     readonly tel: FieldRef<"Client", 'String'>
     readonly email: FieldRef<"Client", 'String'>
+    readonly ncc: FieldRef<"Client", 'String'>
+    readonly fneTemplate: FieldRef<"Client", 'String'>
+    readonly fnePointOfSale: FieldRef<"Client", 'String'>
+    readonly fneEstablishment: FieldRef<"Client", 'String'>
     readonly createdAt: FieldRef<"Client", 'DateTime'>
     readonly updatedAt: FieldRef<"Client", 'DateTime'>
   }
@@ -4352,6 +4404,7 @@ export namespace Prisma {
     tva: string | null
     nature: string | null
     desc: string | null
+    externalCode: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -4369,6 +4422,7 @@ export namespace Prisma {
     tva: string | null
     nature: string | null
     desc: string | null
+    externalCode: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -4386,6 +4440,7 @@ export namespace Prisma {
     tva: number
     nature: number
     desc: number
+    externalCode: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -4417,6 +4472,7 @@ export namespace Prisma {
     tva?: true
     nature?: true
     desc?: true
+    externalCode?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -4434,6 +4490,7 @@ export namespace Prisma {
     tva?: true
     nature?: true
     desc?: true
+    externalCode?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -4451,6 +4508,7 @@ export namespace Prisma {
     tva?: true
     nature?: true
     desc?: true
+    externalCode?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -4555,6 +4613,7 @@ export namespace Prisma {
     tva: string
     nature: string
     desc: string | null
+    externalCode: string | null
     createdAt: Date
     updatedAt: Date
     _count: MissionCountAggregateOutputType | null
@@ -4591,6 +4650,7 @@ export namespace Prisma {
     tva?: boolean
     nature?: boolean
     desc?: boolean
+    externalCode?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     encaissements?: boolean | Mission$encaissementsArgs<ExtArgs>
@@ -4611,6 +4671,7 @@ export namespace Prisma {
     tva?: boolean
     nature?: boolean
     desc?: boolean
+    externalCode?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["mission"]>
@@ -4628,6 +4689,7 @@ export namespace Prisma {
     tva?: boolean
     nature?: boolean
     desc?: boolean
+    externalCode?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["mission"]>
@@ -4645,11 +4707,12 @@ export namespace Prisma {
     tva?: boolean
     nature?: boolean
     desc?: boolean
+    externalCode?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type MissionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nom" | "client" | "apporteur" | "statut" | "montant" | "avance" | "debut" | "fin" | "tva" | "nature" | "desc" | "createdAt" | "updatedAt", ExtArgs["result"]["mission"]>
+  export type MissionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nom" | "client" | "apporteur" | "statut" | "montant" | "avance" | "debut" | "fin" | "tva" | "nature" | "desc" | "externalCode" | "createdAt" | "updatedAt", ExtArgs["result"]["mission"]>
   export type MissionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     encaissements?: boolean | Mission$encaissementsArgs<ExtArgs>
     factures?: boolean | Mission$facturesArgs<ExtArgs>
@@ -4677,6 +4740,7 @@ export namespace Prisma {
       tva: string
       nature: string
       desc: string | null
+      externalCode: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["mission"]>
@@ -5116,6 +5180,7 @@ export namespace Prisma {
     readonly tva: FieldRef<"Mission", 'String'>
     readonly nature: FieldRef<"Mission", 'String'>
     readonly desc: FieldRef<"Mission", 'String'>
+    readonly externalCode: FieldRef<"Mission", 'String'>
     readonly createdAt: FieldRef<"Mission", 'DateTime'>
     readonly updatedAt: FieldRef<"Mission", 'DateTime'>
   }
@@ -18461,6 +18526,10 @@ export namespace Prisma {
     secteur: 'secteur',
     tel: 'tel',
     email: 'email',
+    ncc: 'ncc',
+    fneTemplate: 'fneTemplate',
+    fnePointOfSale: 'fnePointOfSale',
+    fneEstablishment: 'fneEstablishment',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -18495,6 +18564,7 @@ export namespace Prisma {
     tva: 'tva',
     nature: 'nature',
     desc: 'desc',
+    externalCode: 'externalCode',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -18818,6 +18888,10 @@ export namespace Prisma {
     secteur?: StringNullableFilter<"Client"> | string | null
     tel?: StringNullableFilter<"Client"> | string | null
     email?: StringNullableFilter<"Client"> | string | null
+    ncc?: StringNullableFilter<"Client"> | string | null
+    fneTemplate?: StringNullableFilter<"Client"> | string | null
+    fnePointOfSale?: StringNullableFilter<"Client"> | string | null
+    fneEstablishment?: StringNullableFilter<"Client"> | string | null
     createdAt?: DateTimeFilter<"Client"> | Date | string
     updatedAt?: DateTimeFilter<"Client"> | Date | string
   }
@@ -18828,6 +18902,10 @@ export namespace Prisma {
     secteur?: SortOrderInput | SortOrder
     tel?: SortOrderInput | SortOrder
     email?: SortOrderInput | SortOrder
+    ncc?: SortOrderInput | SortOrder
+    fneTemplate?: SortOrderInput | SortOrder
+    fnePointOfSale?: SortOrderInput | SortOrder
+    fneEstablishment?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -18841,6 +18919,10 @@ export namespace Prisma {
     secteur?: StringNullableFilter<"Client"> | string | null
     tel?: StringNullableFilter<"Client"> | string | null
     email?: StringNullableFilter<"Client"> | string | null
+    ncc?: StringNullableFilter<"Client"> | string | null
+    fneTemplate?: StringNullableFilter<"Client"> | string | null
+    fnePointOfSale?: StringNullableFilter<"Client"> | string | null
+    fneEstablishment?: StringNullableFilter<"Client"> | string | null
     createdAt?: DateTimeFilter<"Client"> | Date | string
     updatedAt?: DateTimeFilter<"Client"> | Date | string
   }, "id">
@@ -18851,6 +18933,10 @@ export namespace Prisma {
     secteur?: SortOrderInput | SortOrder
     tel?: SortOrderInput | SortOrder
     email?: SortOrderInput | SortOrder
+    ncc?: SortOrderInput | SortOrder
+    fneTemplate?: SortOrderInput | SortOrder
+    fnePointOfSale?: SortOrderInput | SortOrder
+    fneEstablishment?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: ClientCountOrderByAggregateInput
@@ -18869,6 +18955,10 @@ export namespace Prisma {
     secteur?: StringNullableWithAggregatesFilter<"Client"> | string | null
     tel?: StringNullableWithAggregatesFilter<"Client"> | string | null
     email?: StringNullableWithAggregatesFilter<"Client"> | string | null
+    ncc?: StringNullableWithAggregatesFilter<"Client"> | string | null
+    fneTemplate?: StringNullableWithAggregatesFilter<"Client"> | string | null
+    fnePointOfSale?: StringNullableWithAggregatesFilter<"Client"> | string | null
+    fneEstablishment?: StringNullableWithAggregatesFilter<"Client"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Client"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Client"> | Date | string
   }
@@ -18956,6 +19046,7 @@ export namespace Prisma {
     tva?: StringFilter<"Mission"> | string
     nature?: StringFilter<"Mission"> | string
     desc?: StringNullableFilter<"Mission"> | string | null
+    externalCode?: StringNullableFilter<"Mission"> | string | null
     createdAt?: DateTimeFilter<"Mission"> | Date | string
     updatedAt?: DateTimeFilter<"Mission"> | Date | string
     encaissements?: MissionEncListRelationFilter
@@ -18975,6 +19066,7 @@ export namespace Prisma {
     tva?: SortOrder
     nature?: SortOrder
     desc?: SortOrderInput | SortOrder
+    externalCode?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     encaissements?: MissionEncOrderByRelationAggregateInput
@@ -18983,6 +19075,7 @@ export namespace Prisma {
 
   export type MissionWhereUniqueInput = Prisma.AtLeast<{
     id?: number
+    externalCode?: string
     AND?: MissionWhereInput | MissionWhereInput[]
     OR?: MissionWhereInput[]
     NOT?: MissionWhereInput | MissionWhereInput[]
@@ -19001,7 +19094,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Mission"> | Date | string
     encaissements?: MissionEncListRelationFilter
     factures?: FactureListRelationFilter
-  }, "id">
+  }, "id" | "externalCode">
 
   export type MissionOrderByWithAggregationInput = {
     id?: SortOrder
@@ -19016,6 +19109,7 @@ export namespace Prisma {
     tva?: SortOrder
     nature?: SortOrder
     desc?: SortOrderInput | SortOrder
+    externalCode?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: MissionCountOrderByAggregateInput
@@ -19041,6 +19135,7 @@ export namespace Prisma {
     tva?: StringWithAggregatesFilter<"Mission"> | string
     nature?: StringWithAggregatesFilter<"Mission"> | string
     desc?: StringNullableWithAggregatesFilter<"Mission"> | string | null
+    externalCode?: StringNullableWithAggregatesFilter<"Mission"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Mission"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Mission"> | Date | string
   }
@@ -19987,6 +20082,10 @@ export namespace Prisma {
     secteur?: string | null
     tel?: string | null
     email?: string | null
+    ncc?: string | null
+    fneTemplate?: string | null
+    fnePointOfSale?: string | null
+    fneEstablishment?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -19997,6 +20096,10 @@ export namespace Prisma {
     secteur?: string | null
     tel?: string | null
     email?: string | null
+    ncc?: string | null
+    fneTemplate?: string | null
+    fnePointOfSale?: string | null
+    fneEstablishment?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -20006,6 +20109,10 @@ export namespace Prisma {
     secteur?: NullableStringFieldUpdateOperationsInput | string | null
     tel?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
+    ncc?: NullableStringFieldUpdateOperationsInput | string | null
+    fneTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    fnePointOfSale?: NullableStringFieldUpdateOperationsInput | string | null
+    fneEstablishment?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -20016,6 +20123,10 @@ export namespace Prisma {
     secteur?: NullableStringFieldUpdateOperationsInput | string | null
     tel?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
+    ncc?: NullableStringFieldUpdateOperationsInput | string | null
+    fneTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    fnePointOfSale?: NullableStringFieldUpdateOperationsInput | string | null
+    fneEstablishment?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -20026,6 +20137,10 @@ export namespace Prisma {
     secteur?: string | null
     tel?: string | null
     email?: string | null
+    ncc?: string | null
+    fneTemplate?: string | null
+    fnePointOfSale?: string | null
+    fneEstablishment?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -20035,6 +20150,10 @@ export namespace Prisma {
     secteur?: NullableStringFieldUpdateOperationsInput | string | null
     tel?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
+    ncc?: NullableStringFieldUpdateOperationsInput | string | null
+    fneTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    fnePointOfSale?: NullableStringFieldUpdateOperationsInput | string | null
+    fneEstablishment?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -20045,6 +20164,10 @@ export namespace Prisma {
     secteur?: NullableStringFieldUpdateOperationsInput | string | null
     tel?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
+    ncc?: NullableStringFieldUpdateOperationsInput | string | null
+    fneTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    fnePointOfSale?: NullableStringFieldUpdateOperationsInput | string | null
+    fneEstablishment?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -20138,6 +20261,7 @@ export namespace Prisma {
     tva?: string
     nature?: string
     desc?: string | null
+    externalCode?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     encaissements?: MissionEncCreateNestedManyWithoutMissionInput
@@ -20157,6 +20281,7 @@ export namespace Prisma {
     tva?: string
     nature?: string
     desc?: string | null
+    externalCode?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     encaissements?: MissionEncUncheckedCreateNestedManyWithoutMissionInput
@@ -20175,6 +20300,7 @@ export namespace Prisma {
     tva?: StringFieldUpdateOperationsInput | string
     nature?: StringFieldUpdateOperationsInput | string
     desc?: NullableStringFieldUpdateOperationsInput | string | null
+    externalCode?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     encaissements?: MissionEncUpdateManyWithoutMissionNestedInput
@@ -20194,6 +20320,7 @@ export namespace Prisma {
     tva?: StringFieldUpdateOperationsInput | string
     nature?: StringFieldUpdateOperationsInput | string
     desc?: NullableStringFieldUpdateOperationsInput | string | null
+    externalCode?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     encaissements?: MissionEncUncheckedUpdateManyWithoutMissionNestedInput
@@ -20213,6 +20340,7 @@ export namespace Prisma {
     tva?: string
     nature?: string
     desc?: string | null
+    externalCode?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -20229,6 +20357,7 @@ export namespace Prisma {
     tva?: StringFieldUpdateOperationsInput | string
     nature?: StringFieldUpdateOperationsInput | string
     desc?: NullableStringFieldUpdateOperationsInput | string | null
+    externalCode?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -20246,6 +20375,7 @@ export namespace Prisma {
     tva?: StringFieldUpdateOperationsInput | string
     nature?: StringFieldUpdateOperationsInput | string
     desc?: NullableStringFieldUpdateOperationsInput | string | null
+    externalCode?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -21347,6 +21477,10 @@ export namespace Prisma {
     secteur?: SortOrder
     tel?: SortOrder
     email?: SortOrder
+    ncc?: SortOrder
+    fneTemplate?: SortOrder
+    fnePointOfSale?: SortOrder
+    fneEstablishment?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -21361,6 +21495,10 @@ export namespace Prisma {
     secteur?: SortOrder
     tel?: SortOrder
     email?: SortOrder
+    ncc?: SortOrder
+    fneTemplate?: SortOrder
+    fnePointOfSale?: SortOrder
+    fneEstablishment?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -21371,6 +21509,10 @@ export namespace Prisma {
     secteur?: SortOrder
     tel?: SortOrder
     email?: SortOrder
+    ncc?: SortOrder
+    fneTemplate?: SortOrder
+    fnePointOfSale?: SortOrder
+    fneEstablishment?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -21570,6 +21712,7 @@ export namespace Prisma {
     tva?: SortOrder
     nature?: SortOrder
     desc?: SortOrder
+    externalCode?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -21593,6 +21736,7 @@ export namespace Prisma {
     tva?: SortOrder
     nature?: SortOrder
     desc?: SortOrder
+    externalCode?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -21610,6 +21754,7 @@ export namespace Prisma {
     tva?: SortOrder
     nature?: SortOrder
     desc?: SortOrder
+    externalCode?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -23097,6 +23242,7 @@ export namespace Prisma {
     tva?: string
     nature?: string
     desc?: string | null
+    externalCode?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     factures?: FactureCreateNestedManyWithoutMissionInput
@@ -23115,6 +23261,7 @@ export namespace Prisma {
     tva?: string
     nature?: string
     desc?: string | null
+    externalCode?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     factures?: FactureUncheckedCreateNestedManyWithoutMissionInput
@@ -23148,6 +23295,7 @@ export namespace Prisma {
     tva?: StringFieldUpdateOperationsInput | string
     nature?: StringFieldUpdateOperationsInput | string
     desc?: NullableStringFieldUpdateOperationsInput | string | null
+    externalCode?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     factures?: FactureUpdateManyWithoutMissionNestedInput
@@ -23166,6 +23314,7 @@ export namespace Prisma {
     tva?: StringFieldUpdateOperationsInput | string
     nature?: StringFieldUpdateOperationsInput | string
     desc?: NullableStringFieldUpdateOperationsInput | string | null
+    externalCode?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     factures?: FactureUncheckedUpdateManyWithoutMissionNestedInput
@@ -23183,6 +23332,7 @@ export namespace Prisma {
     tva?: string
     nature?: string
     desc?: string | null
+    externalCode?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     encaissements?: MissionEncCreateNestedManyWithoutMissionInput
@@ -23201,6 +23351,7 @@ export namespace Prisma {
     tva?: string
     nature?: string
     desc?: string | null
+    externalCode?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     encaissements?: MissionEncUncheckedCreateNestedManyWithoutMissionInput
@@ -23269,6 +23420,7 @@ export namespace Prisma {
     tva?: StringFieldUpdateOperationsInput | string
     nature?: StringFieldUpdateOperationsInput | string
     desc?: NullableStringFieldUpdateOperationsInput | string | null
+    externalCode?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     encaissements?: MissionEncUpdateManyWithoutMissionNestedInput
@@ -23287,6 +23439,7 @@ export namespace Prisma {
     tva?: StringFieldUpdateOperationsInput | string
     nature?: StringFieldUpdateOperationsInput | string
     desc?: NullableStringFieldUpdateOperationsInput | string | null
+    externalCode?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     encaissements?: MissionEncUncheckedUpdateManyWithoutMissionNestedInput
