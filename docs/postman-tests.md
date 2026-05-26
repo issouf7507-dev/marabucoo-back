@@ -10,7 +10,7 @@
 >
 > Récupérer le token via `POST /auth/login` et le stocker dans une variable d'environnement Postman `{{token}}`.
 
----
+--
 
 ## 0. Setup Postman
 
@@ -84,7 +84,7 @@ Connexion — récupère le JWT.
 
 ### GET `/auth/me`
 
-Retourne le profil de l'utilisateur connecté.  
+Retourne le profil de l'utilisateur connecté.
 _Header requis : `Authorization: Bearer {{token}}`_
 
 **Réponse 200 :**
