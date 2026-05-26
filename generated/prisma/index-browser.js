@@ -126,6 +126,10 @@ exports.Prisma.ClientScalarFieldEnum = {
   secteur: 'secteur',
   tel: 'tel',
   email: 'email',
+  ncc: 'ncc',
+  fneTemplate: 'fneTemplate',
+  fnePointOfSale: 'fnePointOfSale',
+  fneEstablishment: 'fneEstablishment',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -154,6 +158,7 @@ exports.Prisma.MissionScalarFieldEnum = {
   tva: 'tva',
   nature: 'nature',
   desc: 'desc',
+  externalCode: 'externalCode',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };

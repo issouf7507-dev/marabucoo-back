@@ -12,13 +12,17 @@ datasource db {
 // ─────────────────────────────────────────
 
 model Client {
-  id        Int      @id @default(autoincrement())
-  nom       String
-  secteur   String?
-  tel       String?
-  email     String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id               Int      @id @default(autoincrement())
+  nom              String
+  secteur          String?
+  tel              String?
+  email            String?
+  ncc              String?
+  fneTemplate      String? // B2C | B2B | B2G | B2F
+  fnePointOfSale   String?
+  fneEstablishment String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
 
   @@map("clients")
 }
@@ -51,20 +55,21 @@ enum Role {
 // ─────────────────────────────────────────
 
 model Mission {
-  id        Int           @id @default(autoincrement())
-  nom       String
-  client    String
-  apporteur String?
-  statut    MissionStatut @default(PROSPECT)
-  montant   Float         @default(0)
-  avance    Float         @default(0)
-  debut     DateTime?
-  fin       DateTime?
-  tva       String        @default("exo")
-  nature    String        @default("prevu")
-  desc      String?
-  createdAt DateTime      @default(now())
-  updatedAt DateTime      @updatedAt
+  id           Int           @id @default(autoincrement())
+  nom          String
+  client       String
+  apporteur    String?
+  statut       MissionStatut @default(PROSPECT)
+  montant      Float         @default(0)
+  avance       Float         @default(0)
+  debut        DateTime?
+  fin          DateTime?
+  tva          String        @default("exo")
+  nature       String        @default("prevu")
+  desc         String?
+  externalCode String?       @unique
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
 
   encaissements MissionEnc[]
   factures      Facture[]

@@ -3,10 +3,14 @@ import { z } from 'zod';
 import { prisma } from '../lib/prisma.js';
 
 const clientSchema = z.object({
-  nom:     z.string().min(1, 'Le nom est requis'),
-  secteur: z.string().optional(),
-  tel:     z.string().optional(),
-  email:   z.string().email('Email invalide').optional().or(z.literal('')),
+  nom:              z.string().min(1, 'Le nom est requis'),
+  secteur:          z.string().optional(),
+  tel:              z.string().optional(),
+  email:            z.string().email('Email invalide').optional().or(z.literal('')),
+  ncc:              z.string().optional(),
+  fneTemplate:      z.enum(['B2C', 'B2B', 'B2G', 'B2F']).optional(),
+  fnePointOfSale:   z.string().optional(),
+  fneEstablishment: z.string().optional(),
 });
 
 export async function getAll(_req: Request, res: Response): Promise<void> {
