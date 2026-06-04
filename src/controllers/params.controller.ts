@@ -47,9 +47,16 @@ async function computeDynamic() {
     if (last) coffre += last.solde;
   }
 
-  // banque: sum of credits - debits from depenses
-  const depAgg = await prisma.depense.aggregate({ _sum: { credit: true, debit: true } });
-  const banque = (depAgg._sum.credit ?? 0) - (depAgg._sum.debit ?? 0);
+  // banque: computed from type + montant (credit/debit columns may be stale on old records)
+  const [entrees, sorties] = await Promise.all([
+    prisma.depense.aggregate({ _sum: { montant: true }, where: { type: 'ENTREE BANQUE' } }),
+    prisma.depense.aggregate({ _sum: { montant: true, fraisTransf: true, penalite: true }, where: { type: 'SORTIE BANQUE' } }),
+  ]);
+  const banque =
+    (entrees._sum.montant ?? 0) -
+    (sorties._sum.montant ?? 0) -
+    (sorties._sum.fraisTransf ?? 0) -
+    (sorties._sum.penalite ?? 0);
 
   return { masseSal, arrSal, arrSalR, coffre, banque };
 }

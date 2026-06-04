@@ -28,6 +28,15 @@ export async function getAll(req: Request, res: Response): Promise<void> {
   res.json(depenses);
 }
 
+function deriveCreditDebit(type?: string, montant?: number, fraisTransf?: number, penalite?: number) {
+  const mnt = montant ?? 0;
+  const ft  = fraisTransf ?? 0;
+  const pen = penalite ?? 0;
+  if (type === 'ENTREE BANQUE') return { credit: mnt, debit: 0 };
+  if (type === 'SORTIE BANQUE') return { credit: 0, debit: mnt + ft + pen };
+  return {};
+}
+
 export async function create(req: Request, res: Response): Promise<void> {
   const parsed = depenseSchema.safeParse(req.body);
   if (!parsed.success) {
@@ -35,7 +44,8 @@ export async function create(req: Request, res: Response): Promise<void> {
     return;
   }
   const { date, ...rest } = parsed.data;
-  const dep = await prisma.depense.create({ data: { ...rest, date: new Date(date) } });
+  const derived = deriveCreditDebit(rest.type, rest.montant, rest.fraisTransf, rest.penalite);
+  const dep = await prisma.depense.create({ data: { ...rest, ...derived, date: new Date(date) } });
   res.status(201).json(dep);
 }
 
@@ -46,9 +56,16 @@ export async function update(req: Request, res: Response): Promise<void> {
     return;
   }
   const { date, ...rest } = parsed.data;
+  // Recompute credit/debit only when type or amounts are provided in the update
+  const existing = await prisma.depense.findUniqueOrThrow({ where: { id: Number(req.params.id) } });
+  const mergedType  = rest.type        ?? existing.type;
+  const mergedMnt   = rest.montant     ?? existing.montant;
+  const mergedFt    = rest.fraisTransf ?? existing.fraisTransf;
+  const mergedPen   = rest.penalite    ?? existing.penalite;
+  const derived = deriveCreditDebit(mergedType, mergedMnt ?? 0, mergedFt ?? 0, mergedPen ?? 0);
   const dep = await prisma.depense.update({
     where: { id: Number(req.params.id) },
-    data: { ...rest, ...(date ? { date: new Date(date) } : {}) },
+    data: { ...rest, ...derived, ...(date ? { date: new Date(date) } : {}) },
   });
   res.json(dep);
 }
