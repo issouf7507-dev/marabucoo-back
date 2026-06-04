@@ -62,24 +62,20 @@ async function computeDynamic() {
     if (last) coffre += last.solde;
   }
 
-  // banque: computed from type + montant (credit/debit columns may be stale on old records
+  // banque: entrées - sorties - frais - pénalités (solde réel du compte)
   const [entrees, sorties] = await Promise.all([
-    prisma.depense.aggregate({
-      _sum: { montant: true },
-      where: { type: "ENTREE BANQUE" },
-    }),
-    prisma.depense.aggregate({
-      _sum: { montant: true, fraisTransf: true, penalite: true },
-      where: { type: "SORTIE BANQUE" },
-    }),
+    prisma.depense.aggregate({ _sum: { montant: true }, where: { type: "ENTREE BANQUE" } }),
+    prisma.depense.aggregate({ _sum: { montant: true, fraisTransf: true, penalite: true }, where: { type: "SORTIE BANQUE" } }),
   ]);
+  const totalFraisTransf = sorties._sum.fraisTransf ?? 0;
+  const totalPenalite    = sorties._sum.penalite    ?? 0;
   const banque =
     (entrees._sum.montant ?? 0) -
     (sorties._sum.montant ?? 0) -
-    (sorties._sum.fraisTransf ?? 0) -
-    (sorties._sum.penalite ?? 0);
+    totalFraisTransf -
+    totalPenalite;
 
-  return { masseSal, arrSal, arrSalR, coffre, banque };
+  return { masseSal, arrSal, arrSalR, coffre, banque, totalFraisTransf, totalPenalite };
 }
 
 export async function get(_req: Request, res: Response): Promise<void> {
