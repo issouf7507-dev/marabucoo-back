@@ -1,7 +1,20 @@
-import type { Request, Response } from 'express';
-import { prisma } from '../lib/prisma.js';
+import type { Request, Response } from "express";
+import { prisma } from "../lib/prisma.js";
 
-const MOIS_KEYS = ['jan','fev','mar','avr','mai','jun','jul','aou','sep','oct','nov','dec'] as const;
+const MOIS_KEYS = [
+  "jan",
+  "fev",
+  "mar",
+  "avr",
+  "mai",
+  "jun",
+  "jul",
+  "aou",
+  "sep",
+  "oct",
+  "nov",
+  "dec",
+] as const;
 
 async function computeDynamic() {
   const now = new Date();
@@ -26,31 +39,39 @@ async function computeDynamic() {
 
     for (let yr = debutYear; yr <= currentYear; yr++) {
       const startM = yr === debutYear ? debutMonthIdx : 0;
-      const endM   = yr === currentYear ? currentMonthIdx - 1 : 11;
+      const endM = yr === currentYear ? currentMonthIdx - 1 : 11;
       for (let m = startM; m <= endM; m++) {
         const moisKey = MOIS_KEYS[m];
-        const paie = staff.paies.find(p => p.mois === moisKey && p.annee === yr);
+        const paie = staff.paies.find(
+          (p) => p.mois === moisKey && p.annee === yr,
+        );
         arrSal += staff.salaire;
-        if (paie?.statut === 'Payé') arrSalR += paie.montant ?? staff.salaire;
+        if (paie?.statut === "Payé") arrSalR += paie.montant ?? staff.salaire;
       }
     }
   }
 
   // coffre: last solde for each caisse in petite_caisse, summed
-  const caisseGroups = await prisma.petiteCaisse.groupBy({ by: ['caisse'] });
+  const caisseGroups = await prisma.petiteCaisse.groupBy({ by: ["caisse"] });
   let coffre = 0;
   for (const g of caisseGroups) {
     const last = await prisma.petiteCaisse.findFirst({
       where: { caisse: g.caisse },
-      orderBy: { id: 'desc' },
+      orderBy: { id: "desc" },
     });
     if (last) coffre += last.solde;
   }
 
-  // banque: computed from type + montant (credit/debit columns may be stale on old records)
+  // banque: computed from type + montant (credit/debit columns may be stale on old records
   const [entrees, sorties] = await Promise.all([
-    prisma.depense.aggregate({ _sum: { montant: true }, where: { type: 'ENTREE BANQUE' } }),
-    prisma.depense.aggregate({ _sum: { montant: true, fraisTransf: true, penalite: true }, where: { type: 'SORTIE BANQUE' } }),
+    prisma.depense.aggregate({
+      _sum: { montant: true },
+      where: { type: "ENTREE BANQUE" },
+    }),
+    prisma.depense.aggregate({
+      _sum: { montant: true, fraisTransf: true, penalite: true },
+      where: { type: "SORTIE BANQUE" },
+    }),
   ]);
   const banque =
     (entrees._sum.montant ?? 0) -
@@ -72,7 +93,14 @@ export async function get(_req: Request, res: Response): Promise<void> {
 
 export async function upsert(req: Request, res: Response): Promise<void> {
   // Only persist manually-set fields; computed fields are derived at read time
-  const { banque: _b, coffre: _c, masseSal: _m, arrSal: _as, arrSalR: _asr, ...manual } = req.body;
+  const {
+    banque: _b,
+    coffre: _c,
+    masseSal: _m,
+    arrSal: _as,
+    arrSalR: _asr,
+    ...manual
+  } = req.body;
   const params = await prisma.params.upsert({
     where: { id: 1 },
     update: manual,
