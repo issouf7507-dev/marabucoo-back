@@ -11,7 +11,7 @@ const prisma = new PrismaClient({ adapter });
 async function main() {
   console.log("🌱 Seed en cours...");
 
-  // Utilisateur admin par défaut
+  // Utilisateur admin par défau
   const existingAdmin = await prisma.user.findUnique({
     where: { email: "admin@marabu.ci" },
   });
