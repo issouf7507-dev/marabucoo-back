@@ -8,12 +8,12 @@ const createSchema = z.object({
   name:     z.string().min(2),
   email:    z.string().email(),
   password: z.string().min(6),
-  role:     z.enum(['ADMIN', 'COO', 'VIEWER']).default('VIEWER'),
+  role:     z.enum(['ADMIN', 'COO', 'VIEWER', 'ASSISTANTE']).default('VIEWER'),
 });
 
 const updateSchema = z.object({
   name:   z.string().min(2).optional(),
-  role:   z.enum(['ADMIN', 'COO', 'VIEWER']).optional(),
+  role:   z.enum(['ADMIN', 'COO', 'VIEWER', 'ASSISTANTE']).optional(),
   active: z.boolean().optional(),
 });
 
