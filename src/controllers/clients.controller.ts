@@ -1,27 +1,29 @@
-import type { Request, Response } from 'express';
-import { z } from 'zod';
-import { prisma } from '../lib/prisma.js';
-
+import type { Request, Response } from "express";
+import { z } from "zod";
+import { prisma } from "../lib/prisma.js";
+// schema
 const clientSchema = z.object({
-  nom:              z.string().min(1, 'Le nom est requis'),
-  secteur:          z.string().optional(),
-  tel:              z.string().optional(),
-  email:            z.string().email('Email invalide').optional().or(z.literal('')),
-  ncc:              z.string().optional(),
-  fneTemplate:      z.enum(['B2C', 'B2B', 'B2G', 'B2F']).optional(),
-  fnePointOfSale:   z.string().optional(),
+  nom: z.string().min(1, "Le nom est requis"),
+  secteur: z.string().optional(),
+  tel: z.string().optional(),
+  email: z.string().email("Email invalide").optional().or(z.literal("")),
+  ncc: z.string().optional(),
+  fneTemplate: z.enum(["B2C", "B2B", "B2G", "B2F"]).optional(),
+  fnePointOfSale: z.string().optional(),
   fneEstablishment: z.string().optional(),
 });
 
 export async function getAll(_req: Request, res: Response): Promise<void> {
-  const clients = await prisma.client.findMany({ orderBy: { nom: 'asc' } });
+  const clients = await prisma.client.findMany({ orderBy: { nom: "asc" } });
   res.json(clients);
 }
 
 export async function create(req: Request, res: Response): Promise<void> {
   const parsed = clientSchema.safeParse(req.body);
   if (!parsed.success) {
-    res.status(400).json({ message: 'Données invalides', errors: parsed.error.flatten() });
+    res
+      .status(400)
+      .json({ message: "Données invalides", errors: parsed.error.flatten() });
     return;
   }
   const client = await prisma.client.create({ data: parsed.data });
@@ -31,7 +33,7 @@ export async function create(req: Request, res: Response): Promise<void> {
 export async function update(req: Request, res: Response): Promise<void> {
   const parsed = clientSchema.partial().safeParse(req.body);
   if (!parsed.success) {
-    res.status(400).json({ message: 'Données invalides' });
+    res.status(400).json({ message: "Données invalides" });
     return;
   }
   const client = await prisma.client.update({
